@@ -1,4 +1,4 @@
-# Design patter
+# Design pattern
 ## Creational patterns 
 Creational patterns provide object creation mechanisms that increase flexibility and reuse of existing code.
 - [Prototype](./design-pattern/prototype/README.md)
@@ -11,3 +11,11 @@ Structural patterns explain how to assemble objects and classes into larger stru
 Behavioral patterns take care of effective communication and the assignment of responsibilities between objects.
 - [Strategy](./design-pattern/strategy/README.md)
 - [Mediator](./design-pattern/mediator/README.md)
+# Go
+## Go channel
+Channels are the pipes that connect concurrent goroutines. You can send values into channels from one goroutine and receive those values into another goroutine.
+
+Examples:
+- [Fibonacci](./go/channel/fibonacci/README.md)
+- [Producer/Consumer](./go/channel/producer-consumer/README.md)
+- [Fan-Out/Fan-In](./go/channel/fan-out-fan-in/README.md)
