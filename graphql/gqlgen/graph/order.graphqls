@@ -1,0 +1,10 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+# order.graphqls
+
+type Order {
+    id: ID!
+    user: User!
+}

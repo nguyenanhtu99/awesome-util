@@ -1,0 +1,18 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+# user.graphqls
+
+type Query {
+    user(id: ID!): User!
+
+    order(id: ID!): Order!
+    orders(userId: ID!): [Order!]!
+}
+
+type Mutation {
+    createUser(name: String!): User!
+
+    createOrder(userId: String!): Order!
+}
