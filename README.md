@@ -19,3 +19,15 @@ Examples:
 - [Fibonacci](./go/channel/fibonacci/README.md)
 - [Producer/Consumer](./go/channel/producer-consumer/README.md)
 - [Fan-Out/Fan-In](./go/channel/fan-out-fan-in/README.md)
+# Graphql
+## [Go-graphql](./graphql/go-graphql/main.go)
+An implementation of GraphQL in Go.
+## [Gqlgen](./graphql/gqlgen/server.go)
+A Go library for building GraphQL servers without any fuss.
+# Sort
+- [Bubble sort](./utils/sortx/bubble.go)
+- [Heap sort](./utils/sortx/heap.go)
+- [Insertion sort](./utils/sortx/insertion.go)
+- [Merge sort](./utils/sortx/merge.go)
+- [Quick sort](./utils/sortx/quick.go)
+- [Selection sort](./utils/sortx/selection.go)
