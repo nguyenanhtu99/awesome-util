@@ -6,12 +6,12 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-// FindT executes a query to find documents in the collection associated with the type T.
+// FindManyT executes a query to find documents in the collection associated with the type T.
 //
 // The opts parameter can be used to specify options for the operation (see the options.FindOptions documentation).
 //
 // For more information about the command, see https://www.mongodb.com/docs/manual/reference/command/find/.
-func FindT[T Modeler](ctx context.Context, filter interface{}, opts ...*options.FindOptions) (res []T, err error) {
+func FindManyT[T Modeler](ctx context.Context, filter interface{}, opts ...*options.FindOptions) (res []T, err error) {
 	var t T
 	// Create a cursor from the collection associated with the type T
 	cur, err := CollRead(t.CollName()).Find(ctx, filter, opts...)
@@ -29,15 +29,14 @@ func FindT[T Modeler](ctx context.Context, filter interface{}, opts ...*options.
 // The opts parameter can be used to specify options for the operation (see the options.FindOneOptions documentation).
 //
 // For more information about the command, see https://www.mongodb.com/docs/manual/reference/command/find/.
-func FindOneT[T Modeler](ctx context.Context, filter interface{}, opts ...*options.FindOneOptions) (res *T, err error) {
-	// Create a new pointer to the type T
-	res = new(T)
+func FindOneT[T Modeler](ctx context.Context, filter interface{}, opts ...*options.FindOneOptions) (T, error) {
 	var t T
 
 	// Find one document in the collection with the given filter
 	cur := CollRead(t.CollName()).FindOne(ctx, filter, opts...)
 
 	// Decode the document into the given pointer
-	err = cur.Decode(&res)
-	return res, err
+	err := cur.Decode(&t)
+
+	return t, err
 }

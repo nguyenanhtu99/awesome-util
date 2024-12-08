@@ -33,12 +33,12 @@ func UpdateOneT[T Modeler](ctx context.Context, filter interface{}, update inter
 // The opts parameter can be used to specify options for the operation (see the options.FindOneAndUpdateOptions documentation).
 //
 // For more information about the command, see https://www.mongodb.com/docs/manual/reference/command/findAndModify/.
-func UpdateAndReturn[T Modeler](ctx context.Context, filter interface{}, update interface{}, opts ...*options.FindOneAndUpdateOptions) (*T, error) {
+func UpdateAndReturn[T Modeler](ctx context.Context, filter interface{}, update interface{}, opts ...*options.FindOneAndUpdateOptions) (T, error) {
 	var t T
 	res := CollWrite(t.CollName()).FindOneAndUpdate(ctx, filter, update, opts...)
 
 	err := res.Decode(&t)
-	return &t, err
+	return t, err
 }
 
 // UpdateMany executes an update command to update one or more documents in the collection.
