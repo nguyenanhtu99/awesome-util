@@ -33,7 +33,11 @@ func (m *MockRepo[T]) CreateOne(ctx context.Context, data T, opts ...*options.In
 	return args.Error(0)
 }
 
-func (m *MockRepo[T]) CreateMany(ctx context.Context, data []T, opts ...*options.InsertManyOptions) (*mongo.InsertManyResult, error) {
+func (m *MockRepo[T]) CreateMany(
+	ctx context.Context,
+	data []T,
+	opts ...*options.InsertManyOptions,
+) (*mongo.InsertManyResult, error) {
 	args := m.Called(ctx, data, opts)
 	return args.Get(0).(*mongo.InsertManyResult), args.Error(1)
 }
@@ -69,7 +73,7 @@ func TestCreateMany(t *testing.T) {
 	result, err := mockRepo.CreateMany(ctx, testData)
 	require.NoError(t, err)
 	require.NotNil(t, result)
-	require.Equal(t, 2, len(result.InsertedIDs))
+	require.Len(t, result.InsertedIDs, 2)
 
 	mockRepo.AssertExpectations(t)
 }

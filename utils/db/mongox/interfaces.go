@@ -21,10 +21,19 @@ type BaseRepository[T mgm.Model] interface {
 	FindOneAndUpdate(ctx context.Context, filter interface{},
 		update interface{}, opts ...*options.FindOneAndUpdateOptions) (T, error)
 	Create(ctx context.Context, data T, opts ...*options.InsertOneOptions) error
-	CreateMany(ctx context.Context, data []interface{}, opts ...*options.InsertManyOptions) (*mongo.InsertManyResult, error)
+	CreateMany(
+		ctx context.Context,
+		data []interface{},
+		opts ...*options.InsertManyOptions,
+	) (*mongo.InsertManyResult, error)
 	Update(ctx context.Context, data T, opts ...*options.UpdateOptions) error
 	UpdateOne(ctx context.Context, filter, update any, opts ...*options.UpdateOptions) (*mongo.UpdateResult, error)
-	UpdateOneById(ctx context.Context, id string, update any, opts ...*options.UpdateOptions) (*mongo.UpdateResult, error)
+	UpdateOneById(
+		ctx context.Context,
+		id string,
+		update any,
+		opts ...*options.UpdateOptions,
+	) (*mongo.UpdateResult, error)
 	UpdateMany(ctx context.Context, filter, update any, opts ...*options.UpdateOptions) (int64, error)
 	FindRandom(ctx context.Context, filter any, size int, opts ...*options.AggregateOptions) ([]bson.M, error)
 	BulkWrite(ctx context.Context, models []mongo.WriteModel,
@@ -32,7 +41,12 @@ type BaseRepository[T mgm.Model] interface {
 	Count(ctx context.Context, filter any, opts ...*options.CountOptions) (int64, error)
 	EstimatedCount(ctx context.Context, opts ...*options.EstimatedDocumentCountOptions) (int64, error)
 	Aggregate(ctx context.Context, results any, stages []any, opts ...*options.AggregateOptions) error
-	FindOneAndReplace(ctx context.Context, filter any, replacement any, opts ...*options.FindOneAndReplaceOptions) (T, error)
+	FindOneAndReplace(
+		ctx context.Context,
+		filter any,
+		replacement any,
+		opts ...*options.FindOneAndReplaceOptions,
+	) (T, error)
 }
 
 type CommonRepo[T mgm.Model] struct{}
@@ -41,7 +55,7 @@ func NewCommonRepo[T mgm.Model]() CommonRepo[T] {
 	return CommonRepo[T]{}
 }
 
-// Validate interface implement at compile time
+// Validate interface implement at compile time.
 var _ BaseRepository[mgm.Model] = (*CommonRepo[mgm.Model])(nil)
 
 func (repo CommonRepo[T]) makeEmptyModel() T {

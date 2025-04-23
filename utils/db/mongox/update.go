@@ -21,7 +21,13 @@ func (repo CommonRepo[T]) Update(ctx context.Context, data T, opts ...*options.U
 
 	return nil
 }
-func (repo CommonRepo[T]) UpdateOneById(ctx context.Context, id string, update any, opts ...*options.UpdateOptions) (*mongo.UpdateResult, error) {
+
+func (repo CommonRepo[T]) UpdateOneById(
+	ctx context.Context,
+	id string,
+	update any,
+	opts ...*options.UpdateOptions,
+) (*mongo.UpdateResult, error) {
 	objId, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
 		return nil, err
@@ -31,14 +37,22 @@ func (repo CommonRepo[T]) UpdateOneById(ctx context.Context, id string, update a
 	return repo.UpdateOne(ctx, filter, update, opts...)
 }
 
-func (repo CommonRepo[T]) UpdateOne(ctx context.Context, filter, update any, opts ...*options.UpdateOptions) (*mongo.UpdateResult, error) {
+func (repo CommonRepo[T]) UpdateOne(
+	ctx context.Context,
+	filter, update any,
+	opts ...*options.UpdateOptions,
+) (*mongo.UpdateResult, error) {
 	model := repo.makeEmptyModel()
 	coll := mgm.Coll(model)
 
 	return coll.UpdateOne(ctx, filter, update, opts...)
 }
 
-func (repo CommonRepo[T]) UpdateMany(ctx context.Context, filter, update any, opts ...*options.UpdateOptions) (int64, error) {
+func (repo CommonRepo[T]) UpdateMany(
+	ctx context.Context,
+	filter, update any,
+	opts ...*options.UpdateOptions,
+) (int64, error) {
 	model := repo.makeEmptyModel()
 	coll := mgm.Coll(model)
 
@@ -54,7 +68,6 @@ func (repo CommonRepo[T]) UpdateMany(ctx context.Context, filter, update any, op
 
 func (repo CommonRepo[T]) FindOneAndUpdate(ctx context.Context, filter interface{},
 	update interface{}, opts ...*options.FindOneAndUpdateOptions) (T, error) {
-
 	model := repo.makeEmptyModel()
 	coll := mgm.Coll(model)
 

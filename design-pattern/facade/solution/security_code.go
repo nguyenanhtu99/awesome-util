@@ -1,21 +1,24 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 type SecurityCode struct {
-    code int
+	code int
 }
 
 func newSecurityCode(code int) *SecurityCode {
-    return &SecurityCode{
-        code: code,
-    }
+	return &SecurityCode{
+		code: code,
+	}
 }
 
 func (s *SecurityCode) checkCode(incomingCode int) error {
-    if s.code != incomingCode {
-        return fmt.Errorf("security code is incorrect")
-    }
-    fmt.Println("SecurityCode Verified")
-    return nil
+	if s.code != incomingCode {
+		return errors.New("security code is incorrect")
+	}
+	fmt.Println("SecurityCode Verified")
+	return nil
 }

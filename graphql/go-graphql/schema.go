@@ -4,7 +4,7 @@ import (
 	"github.com/graphql-go/graphql"
 )
 
-// Define the UserType
+// Define the UserType.
 var userType = graphql.NewObject(
 	graphql.ObjectConfig{
 		Name: "User",
@@ -19,7 +19,7 @@ var userType = graphql.NewObject(
 	},
 )
 
-// Define the RootQuery
+// Define the RootQuery.
 var rootQuery = graphql.NewObject(
 	graphql.ObjectConfig{
 		Name: "RootQuery",
@@ -46,7 +46,7 @@ var rootQuery = graphql.NewObject(
 	},
 )
 
-// Schema configuration
+// Schema configuration.
 var schema, _ = graphql.NewSchema(
 	graphql.SchemaConfig{
 		Query: rootQuery,

@@ -12,7 +12,13 @@ import (
 // The opts parameter can be used to specify options for the operation (see the options.UpdateOptions documentation).
 //
 // For more information about the command, see https://www.mongodb.com/docs/manual/reference/command/update/.
-func UpdateOne(ctx context.Context, collName string, filter interface{}, update interface{}, opts ...*options.UpdateOptions) (*mongo.UpdateResult, error) {
+func UpdateOne(
+	ctx context.Context,
+	collName string,
+	filter interface{},
+	update interface{},
+	opts ...*options.UpdateOptions,
+) (*mongo.UpdateResult, error) {
 	return CollWrite(collName).UpdateOne(ctx, filter, update, opts...)
 }
 
@@ -21,7 +27,12 @@ func UpdateOne(ctx context.Context, collName string, filter interface{}, update 
 // The opts parameter can be used to specify options for the operation (see the options.UpdateOptions documentation).
 //
 // For more information about the command, see https://www.mongodb.com/docs/manual/reference/command/update/.
-func UpdateOneT[T Modeler](ctx context.Context, filter interface{}, update interface{}, opts ...*options.UpdateOptions) (*mongo.UpdateResult, error) {
+func UpdateOneT[T Modeler](
+	ctx context.Context,
+	filter interface{},
+	update interface{},
+	opts ...*options.UpdateOptions,
+) (*mongo.UpdateResult, error) {
 	var t T
 	return UpdateOne(ctx, t.CollName(), filter, update, opts...)
 }
@@ -33,7 +44,12 @@ func UpdateOneT[T Modeler](ctx context.Context, filter interface{}, update inter
 // The opts parameter can be used to specify options for the operation (see the options.FindOneAndUpdateOptions documentation).
 //
 // For more information about the command, see https://www.mongodb.com/docs/manual/reference/command/findAndModify/.
-func UpdateAndReturn[T Modeler](ctx context.Context, filter interface{}, update interface{}, opts ...*options.FindOneAndUpdateOptions) (T, error) {
+func UpdateAndReturn[T Modeler](
+	ctx context.Context,
+	filter interface{},
+	update interface{},
+	opts ...*options.FindOneAndUpdateOptions,
+) (T, error) {
 	var t T
 	res := CollWrite(t.CollName()).FindOneAndUpdate(ctx, filter, update, opts...)
 
@@ -46,7 +62,13 @@ func UpdateAndReturn[T Modeler](ctx context.Context, filter interface{}, update 
 // The opts parameter can be used to specify options for the operation (see the options.UpdateOptions documentation).
 //
 // For more information about the command, see https://www.mongodb.com/docs/manual/reference/command/update/.
-func UpdateMany(ctx context.Context, collName string, filter interface{}, update interface{}, opts ...*options.UpdateOptions) (*mongo.UpdateResult, error) {
+func UpdateMany(
+	ctx context.Context,
+	collName string,
+	filter interface{},
+	update interface{},
+	opts ...*options.UpdateOptions,
+) (*mongo.UpdateResult, error) {
 	return CollWrite(collName).UpdateMany(ctx, filter, update, opts...)
 }
 
@@ -55,7 +77,12 @@ func UpdateMany(ctx context.Context, collName string, filter interface{}, update
 // The opts parameter can be used to specify options for the operation (see the options.UpdateOptions documentation).
 //
 // For more information about the command, see https://www.mongodb.com/docs/manual/reference/command/update/.
-func UpdateManyT[T Modeler](ctx context.Context, filter interface{}, update interface{}, opts ...*options.UpdateOptions) (*mongo.UpdateResult, error) {
+func UpdateManyT[T Modeler](
+	ctx context.Context,
+	filter interface{},
+	update interface{},
+	opts ...*options.UpdateOptions,
+) (*mongo.UpdateResult, error) {
 	var t T
 	return UpdateMany(ctx, t.CollName(), filter, update, opts...)
 }

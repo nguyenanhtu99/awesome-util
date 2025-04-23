@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 type Wallet struct {
 	balance int
@@ -19,7 +22,7 @@ func (w *Wallet) creditBalance(amount int) {
 
 func (w *Wallet) debitBalance(amount int) error {
 	if w.balance < amount {
-		return fmt.Errorf("balance is not sufficient")
+		return errors.New("balance is not sufficient")
 	}
 	fmt.Println("Wallet balance is Sufficient")
 	w.balance = w.balance - amount

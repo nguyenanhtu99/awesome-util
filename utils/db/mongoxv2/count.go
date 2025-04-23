@@ -18,7 +18,7 @@ func Count(ctx context.Context, collName string, filter interface{}, opts ...*op
 	return collection.CountDocuments(ctx, filter, opts...)
 }
 
-// CountT counts the number of documents in the collection associated with the type T that match the given filter. 
+// CountT counts the number of documents in the collection associated with the type T that match the given filter.
 // For a fast count of the documents in the collection, see the EstimatedCountT function.
 //
 // For more information about the command, see https://www.mongodb.com/docs/manual/reference/method/db.collection.countDocuments/.
@@ -31,7 +31,11 @@ func CountT[T Modeler](ctx context.Context, filter interface{}, opts ...*options
 // associated with the given collection name using collection metadata.
 //
 // For more information about the command, see https://www.mongodb.com/docs/manual/reference/method/db.collection.estimatedDocumentCount/.
-func EstimatedCount(ctx context.Context, collName string, opts ...*options.EstimatedDocumentCountOptions) (int64, error) {
+func EstimatedCount(
+	ctx context.Context,
+	collName string,
+	opts ...*options.EstimatedDocumentCountOptions,
+) (int64, error) {
 	// Retrieve the collection for reading using the collection name.
 	collection := CollRead(collName)
 

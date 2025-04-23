@@ -1,11 +1,6 @@
 package sortx
 
-// HeapSort is a comparison-based sorting algorithm that uses a binary heap data structure.
-// It first builds a max heap from the input array, then repeatedly extracts the maximum element from the heap and rebuilds the heap.
-// Target Time Complexity: O(n log n)
-// Worst Time Complexity: O(n log n)
-// Best Time Complexity: O(n log n)
-// Space Complexity: O(1)
+// Space Complexity: O(1).
 func HeapSort(arr []int) {
 	n := len(arr)
 

@@ -1,7 +1,7 @@
 package main
 
 type Train interface {
-    registerArrive()
-    depart()
-    permitArrival()
+	registerArrive()
+	depart()
+	permitArrival()
 }

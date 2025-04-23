@@ -20,7 +20,11 @@ func (repo CommonRepo[T]) Create(ctx context.Context, data T, opts ...*options.I
 	return nil
 }
 
-func (repo CommonRepo[T]) CreateMany(ctx context.Context, data []interface{}, opts ...*options.InsertManyOptions) (*mongo.InsertManyResult, error) {
+func (repo CommonRepo[T]) CreateMany(
+	ctx context.Context,
+	data []interface{},
+	opts ...*options.InsertManyOptions,
+) (*mongo.InsertManyResult, error) {
 	model := repo.makeEmptyModel()
 	coll := mgm.Coll(model)
 

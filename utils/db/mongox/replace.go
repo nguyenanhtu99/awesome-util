@@ -7,7 +7,12 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-func (repo CommonRepo[T]) FindOneAndReplace(ctx context.Context, filter any, replacement any, opts ...*options.FindOneAndReplaceOptions) (T, error) {
+func (repo CommonRepo[T]) FindOneAndReplace(
+	ctx context.Context,
+	filter any,
+	replacement any,
+	opts ...*options.FindOneAndReplaceOptions,
+) (T, error) {
 	model := repo.makeEmptyModel()
 	coll := mgm.Coll(model)
 

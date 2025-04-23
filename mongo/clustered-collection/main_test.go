@@ -59,7 +59,7 @@ func BenchmarkQueryClusteredCollection(b *testing.B) {
 
 	b.ResetTimer() // Reset the timer for the actual query benchmarking
 
-	for i := 0; i < b.N; i++ {
+	for range b.N {
 		filter := bson.D{
 			{Key: "_id", Value: bson.D{
 				{Key: "$gte", Value: startID},
@@ -96,7 +96,7 @@ func BenchmarkQueryNonClusteredCollection(b *testing.B) {
 
 	b.ResetTimer() // Reset the timer for the actual query benchmarking
 
-	for i := 0; i < b.N; i++ {
+	for range b.N {
 		filter := bson.D{
 			{Key: "_id", Value: bson.D{
 				{Key: "$gte", Value: startID},
@@ -112,9 +112,9 @@ func BenchmarkQueryNonClusteredCollection(b *testing.B) {
 }
 
 func insertTestData(coll *mongo.Collection) {
-	for n := 0; n < numDocuments/100; n++ {
+	for n := range numDocuments / 100 {
 		docs := make([]interface{}, 100)
-		for i := 0; i < 100; i++ {
+		for i := range 100 {
 			docs[i] = bson.D{
 				{Key: "log", Value: fmt.Sprintf("Log entry %d", n*100+i)},
 			}

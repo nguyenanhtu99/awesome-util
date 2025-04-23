@@ -6,26 +6,26 @@ func main() {
 	var wG sync.WaitGroup
 	stationManager := newStationManger(&wG)
 
-	for i := 0; i < 5; i++ {
+	for i := range 5 {
 		wG.Add(1)
 		passengerTrain := &PassengerTrain{
 			id:       i,
 			mediator: stationManager,
 		}
 
-		go func ()  {
+		go func() {
 			passengerTrain.registerArrive()
 		}()
 	}
 
-	for i := 0; i < 5; i++ {
+	for i := range 5 {
 		wG.Add(1)
 		freightTrain := &FreightTrain{
 			id:       i,
 			mediator: stationManager,
 		}
 
-		go func ()  {
+		go func() {
 			freightTrain.registerArrive()
 		}()
 	}

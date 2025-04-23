@@ -49,7 +49,12 @@ func (repo CommonRepo[T]) Find(ctx context.Context, filter any, opts ...*options
 	return model, nil
 }
 
-func (repo CommonRepo[T]) FindWithCollOption(ctx context.Context, filter any, findOpts []*options.FindOneOptions, collOpts []*options.CollectionOptions) (T, error) {
+func (repo CommonRepo[T]) FindWithCollOption(
+	ctx context.Context,
+	filter any,
+	findOpts []*options.FindOneOptions,
+	collOpts []*options.CollectionOptions,
+) (T, error) {
 	model := repo.makeEmptyModel()
 	coll := mgm.Coll(model, collOpts...)
 
@@ -74,7 +79,12 @@ func (repo CommonRepo[T]) FindMany(ctx context.Context, filter any, opts ...*opt
 	return results, nil
 }
 
-func (repo CommonRepo[T]) FindManyWithCollOption(ctx context.Context, filter any, findOpts []*options.FindOptions, collOpts []*options.CollectionOptions) ([]T, error) {
+func (repo CommonRepo[T]) FindManyWithCollOption(
+	ctx context.Context,
+	filter any,
+	findOpts []*options.FindOptions,
+	collOpts []*options.CollectionOptions,
+) ([]T, error) {
 	model := repo.makeEmptyModel()
 	coll := mgm.Coll(model, collOpts...)
 
@@ -87,7 +97,12 @@ func (repo CommonRepo[T]) FindManyWithCollOption(ctx context.Context, filter any
 	return results, nil
 }
 
-func (repo CommonRepo[T]) FindRandom(ctx context.Context, filter any, size int, opts ...*options.AggregateOptions) ([]bson.M, error) {
+func (repo CommonRepo[T]) FindRandom(
+	ctx context.Context,
+	filter any,
+	size int,
+	opts ...*options.AggregateOptions,
+) ([]bson.M, error) {
 	model := repo.makeEmptyModel()
 	coll := mgm.Coll(model)
 	pipeline := []bson.M{
@@ -118,19 +133,32 @@ func (repo CommonRepo[T]) Count(ctx context.Context, filter any, opts ...*option
 	return coll.CountDocuments(ctx, filter, opts...)
 }
 
-func (repo CommonRepo[T]) EstimatedCount(ctx context.Context, opts ...*options.EstimatedDocumentCountOptions) (int64, error) {
+func (repo CommonRepo[T]) EstimatedCount(
+	ctx context.Context,
+	opts ...*options.EstimatedDocumentCountOptions,
+) (int64, error) {
 	model := repo.makeEmptyModel()
 	coll := CollRead(model)
 	return coll.EstimatedDocumentCount(ctx, opts...)
 }
 
-func (repo CommonRepo[T]) CountWithCollOption(ctx context.Context, filter any, countOpts []*options.CountOptions, collOpts []*options.CollectionOptions) (int64, error) {
+func (repo CommonRepo[T]) CountWithCollOption(
+	ctx context.Context,
+	filter any,
+	countOpts []*options.CountOptions,
+	collOpts []*options.CollectionOptions,
+) (int64, error) {
 	model := repo.makeEmptyModel()
 	coll := mgm.Coll(model, collOpts...)
 	return coll.CountDocuments(ctx, filter, countOpts...)
 }
 
-func (repo CommonRepo[T]) Aggregate(ctx context.Context, results any, stages []any, opts ...*options.AggregateOptions) error {
+func (repo CommonRepo[T]) Aggregate(
+	ctx context.Context,
+	results any,
+	stages []any,
+	opts ...*options.AggregateOptions,
+) error {
 	model := repo.makeEmptyModel()
 	coll := CollRead(model)
 

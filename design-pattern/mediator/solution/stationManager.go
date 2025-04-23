@@ -33,7 +33,7 @@ func (s *StationManager) registerArrive(t Train) {
 func (s *StationManager) notifyAboutDeparture() {
 	s.lock.Lock()
 	defer s.lock.Unlock()
-	
+
 	s.wait.Done()
 	s.isPlatformFree = true
 

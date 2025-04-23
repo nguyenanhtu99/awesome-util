@@ -50,7 +50,12 @@ func CreateWithID[T IDModeler](ctx context.Context, model T, opts ...*options.In
 // CreateMany inserts multiple documents into the collection associated with the collName.
 //
 // For more information about the command, see https://www.mongodb.com/docs/manual/reference/method/db.collection.insertMany/.
-func CreateMany(ctx context.Context, collName string, models []any, opts ...*options.InsertManyOptions) (*mongo.InsertManyResult, error) {
+func CreateMany(
+	ctx context.Context,
+	collName string,
+	models []any,
+	opts ...*options.InsertManyOptions,
+) (*mongo.InsertManyResult, error) {
 	if len(models) == 0 {
 		return &mongo.InsertManyResult{}, nil
 	}
@@ -65,7 +70,11 @@ func CreateMany(ctx context.Context, collName string, models []any, opts ...*opt
 // CreateManyT inserts multiple documents into the collection associated with the type T.
 //
 // For more information about the command, see https://www.mongodb.com/docs/manual/reference/method/db.collection.insertMany/.
-func CreateManyT[T Modeler](ctx context.Context, models []T, opts ...*options.InsertManyOptions) (*mongo.InsertManyResult, error) {
+func CreateManyT[T Modeler](
+	ctx context.Context,
+	models []T,
+	opts ...*options.InsertManyOptions,
+) (*mongo.InsertManyResult, error) {
 	if len(models) == 0 {
 		return &mongo.InsertManyResult{}, nil
 	}

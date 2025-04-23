@@ -1,21 +1,24 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 type Account struct {
-    name string
+	name string
 }
 
 func newAccount(accountName string) *Account {
-    return &Account{
-        name: accountName,
-    }
+	return &Account{
+		name: accountName,
+	}
 }
 
 func (a *Account) checkAccount(accountName string) error {
-    if a.name != accountName {
-        return fmt.Errorf("Account Name is incorrect")
-    }
-    fmt.Println("Account Verified")
-    return nil
+	if a.name != accountName {
+		return errors.New("Account Name is incorrect")
+	}
+	fmt.Println("Account Verified")
+	return nil
 }

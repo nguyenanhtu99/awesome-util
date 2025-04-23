@@ -7,13 +7,13 @@ import (
 	"time"
 )
 
-// Simulate scraping a URL
+// Simulate scraping a URL.
 func scrapeURL(url string) string {
 	time.Sleep(time.Millisecond * time.Duration(rand.Intn(1000))) // Simulate variable response time
 	return fmt.Sprintf("Content from %s", url)
 }
 
-// Worker function that processes URLs and sends results to the results channel
+// Worker function that processes URLs and sends results to the results channel.
 func worker(id int, urls <-chan string, results chan<- string, wg *sync.WaitGroup) {
 	defer wg.Done()
 	for url := range urls {

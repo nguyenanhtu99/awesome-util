@@ -19,14 +19,24 @@ func TestTransform(t *testing.T) {
 	normalSquares := NormalTransform(intList, transformFunc)
 	for i, v := range normalSquares {
 		if v != expectedSquares[i] {
-			t.Errorf("Normal: Test failed for integers to squares. Index %d: got %v, expected %v", i, v, expectedSquares[i])
+			t.Errorf(
+				"Normal: Test failed for integers to squares. Index %d: got %v, expected %v",
+				i,
+				v,
+				expectedSquares[i],
+			)
 		}
 	}
 
 	iteratorSquares := IteratorTransform(intList, transformFunc)
 	for i, v := range iteratorSquares {
 		if v != expectedSquares[i] {
-			t.Errorf("Iterator: Test failed for integers to squares. Index %d: got %v, expected %v", i, v, expectedSquares[i])
+			t.Errorf(
+				"Iterator: Test failed for integers to squares. Index %d: got %v, expected %v",
+				i,
+				v,
+				expectedSquares[i],
+			)
 		}
 	}
 
@@ -38,14 +48,24 @@ func TestTransform(t *testing.T) {
 	normalLengths := NormalTransform(stringList, lengthFunc)
 	for i, v := range normalLengths {
 		if v != expectedLengths[i] {
-			t.Errorf("Normal: Test failed for strings to lengths. Index %d: got %v, expected %v", i, v, expectedLengths[i])
+			t.Errorf(
+				"Normal: Test failed for strings to lengths. Index %d: got %v, expected %v",
+				i,
+				v,
+				expectedLengths[i],
+			)
 		}
 	}
 
 	iteratorLengths := IteratorTransform(stringList, lengthFunc)
 	for i, v := range iteratorLengths {
 		if v != expectedLengths[i] {
-			t.Errorf("Iterator: Test failed for strings to lengths. Index %d: got %v, expected %v", i, v, expectedLengths[i])
+			t.Errorf(
+				"Iterator: Test failed for strings to lengths. Index %d: got %v, expected %v",
+				i,
+				v,
+				expectedLengths[i],
+			)
 		}
 	}
 
@@ -57,20 +77,30 @@ func TestTransform(t *testing.T) {
 	normalNegations := NormalTransform(floatList, negationFunc)
 	for i, v := range normalNegations {
 		if !reflect.DeepEqual(v, expectedNegations[i]) {
-			t.Errorf("Normal: Test failed for floats to negations. Index %d: got %v, expected %v", i, v, expectedNegations[i])
+			t.Errorf(
+				"Normal: Test failed for floats to negations. Index %d: got %v, expected %v",
+				i,
+				v,
+				expectedNegations[i],
+			)
 		}
 	}
 
 	iteratorNegations := IteratorTransform(floatList, negationFunc)
 	for i, v := range iteratorNegations {
 		if !reflect.DeepEqual(v, expectedNegations[i]) {
-			t.Errorf("Iterator: Test failed for floats to negations. Index %d: got %v, expected %v", i, v, expectedNegations[i])
+			t.Errorf(
+				"Iterator: Test failed for floats to negations. Index %d: got %v, expected %v",
+				i,
+				v,
+				expectedNegations[i],
+			)
 		}
 	}
 }
 
 func BenchmarkNormalTransform(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for range b.N {
 		for _, num := range NormalTransform(list, transform) {
 			if num == 4 {
 				break
@@ -80,7 +110,7 @@ func BenchmarkNormalTransform(b *testing.B) {
 }
 
 func BenchmarkIteratorTransform(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for range b.N {
 		for _, num := range IteratorTransform(list, transform) {
 			if num == 4 {
 				break

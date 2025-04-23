@@ -18,18 +18,18 @@ type IntIDModel struct {
 	IDIntField `bson:",inline" json:",inline"`
 }
 
-// DefaultModelWithDate struct contains IDField and DateFields
+// DefaultModelWithDate struct contains IDField and DateFields.
 type DefaultModelWithDate struct {
 	IDField    `bson:",inline" json:",inline"`
 	DateFields `bson:",inline" json:",inline"`
 }
 
-// Creating function calls the inner fields' defined hooks
+// Creating function calls the inner fields' defined hooks.
 func (model *DefaultModelWithDate) Creating() error {
 	return model.DateFields.Creating()
 }
 
-// Updating function calls the inner fields' defined hooks
+// Updating function calls the inner fields' defined hooks.
 func (model *DefaultModelWithDate) Updating() error {
 	return model.DateFields.Updating()
 }
@@ -39,8 +39,7 @@ type IDField struct {
 	ID primitive.ObjectID `json:"id" bson:"_id,omitempty"`
 }
 
-// PrepareID method prepares the ID value to be used for filtering
-// e.g convert hex-string ID value to bson.ObjectId
+// e.g convert hex-string ID value to bson.ObjectId.
 func (f *IDField) PrepareID(id interface{}) (interface{}, error) {
 	if idStr, ok := id.(string); ok {
 		return primitive.ObjectIDFromHex(idStr)
@@ -50,7 +49,7 @@ func (f *IDField) PrepareID(id interface{}) (interface{}, error) {
 	return id, nil
 }
 
-// GetID method returns a model's ID
+// GetID method returns a model's ID.
 func (f *IDField) GetID() interface{} {
 	return f.ID
 }
@@ -65,8 +64,7 @@ type IDIntField struct {
 	ID int64 `json:"id" bson:"_id,omitempty"`
 }
 
-// PrepareID method prepares the ID value to be used for filtering
-// e.g convert hex-string ID value to bson.ObjectId
+// e.g convert hex-string ID value to bson.ObjectId.
 func (f *IDIntField) PrepareID(id interface{}) (interface{}, error) {
 	if idStr, ok := id.(string); ok {
 		idInt, err := strconv.Atoi(idStr)
@@ -80,7 +78,7 @@ func (f *IDIntField) PrepareID(id interface{}) (interface{}, error) {
 	return id, nil
 }
 
-// GetID method return model's id
+// GetID method return model's id.
 func (f *IDIntField) GetID() interface{} {
 	return f.ID
 }

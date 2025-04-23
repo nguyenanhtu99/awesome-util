@@ -46,7 +46,6 @@ func Parallel[T any](list []T) func(func(i int, t T) bool) {
 						cancel()
 					}
 				}
-
 			}(i, t)
 		}
 		wg.Wait()

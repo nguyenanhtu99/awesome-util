@@ -1,6 +1,6 @@
 package main
 
 type Inode interface {
-    print(string)
-    clone() Inode
+	print(string)
+	clone() Inode
 }

@@ -7,10 +7,10 @@ import (
 	"time"
 )
 
-// Producer function that generates tasks and sends them to the jobs channel
+// Producer function that generates tasks and sends them to the jobs channel.
 func producer(id int, jobs chan<- int, wg *sync.WaitGroup) {
 	defer wg.Done()
-	for j := 0; j < 5; j++ {
+	for range 5 {
 		task := rand.Intn(100) // Generate a random task (an integer)
 		fmt.Printf("Producer %d produced task %d\n", id, task)
 		jobs <- task
@@ -18,7 +18,7 @@ func producer(id int, jobs chan<- int, wg *sync.WaitGroup) {
 	}
 }
 
-// Consumer function that processes tasks from the jobs channel
+// Consumer function that processes tasks from the jobs channel.
 func consumer(jobs <-chan int, done chan<- bool) {
 	for job := range jobs {
 		fmt.Printf("Consumer processing task %d\n", job)

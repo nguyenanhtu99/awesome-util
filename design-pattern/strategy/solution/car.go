@@ -1,13 +1,13 @@
 package main
 
 type Car struct {
-	feePerHour int
-	speed      int
-	gasFeePerKm   int
+	feePerHour  int
+	speed       int
+	gasFeePerKm int
 }
 
 func (c *Car) calculateFee(distant int) int {
-	return c.calculateTime(distant) * c.feePerHour + c.calculateGasFee(distant)
+	return c.calculateTime(distant)*c.feePerHour + c.calculateGasFee(distant)
 }
 
 func (c *Car) calculateTime(distant int) int {

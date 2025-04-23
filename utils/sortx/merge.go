@@ -1,10 +1,6 @@
 package sortx
 
-// MergeSort is a divide-and-conquer algorithm that divides the input list into two halves, recursively sorts the two halves, and then merges the sorted halves.
-// Target Time Complexity: O(n log n)
-// Worst Time Complexity: O(n log n)
-// Best Time Complexity: O(n log n)
-// Space Complexity: O(n)
+// Space Complexity: O(n).
 func MergeSort(arr []int) {
 	mergeSort(arr, 0, len(arr)-1)
 }
@@ -18,6 +14,7 @@ func mergeSort(arr []int, l, r int) {
 	}
 }
 
+//nolint:gocritic // ignore
 func merge(arr []int, l, m, r int) {
 	n1 := m - l + 1
 	n2 := r - m
@@ -27,10 +24,10 @@ func merge(arr []int, l, m, r int) {
 	R := make([]int, n2)
 
 	// Copy data to temporary arrays
-	for i := 0; i < n1; i++ {
+	for i := range n1 {
 		L[i] = arr[l+i]
 	}
-	for j := 0; j < n2; j++ {
+	for j := range n2 {
 		R[j] = arr[m+1+j]
 	}
 

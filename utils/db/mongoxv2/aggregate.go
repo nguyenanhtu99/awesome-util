@@ -9,7 +9,13 @@ import (
 // Aggregate executes an aggregate command against the collection and returns a cursor over the resulting documents.
 //
 // For more information about the command, see https://www.mongodb.com/docs/manual/reference/command/aggregate/.
-func Aggregate(ctx context.Context, collName string, result interface{}, pipeline []interface{}, opts ...*options.AggregateOptions) error {
+func Aggregate(
+	ctx context.Context,
+	collName string,
+	result interface{},
+	pipeline []interface{},
+	opts ...*options.AggregateOptions,
+) error {
 	// Create a cursor from the collection associated with the type T
 	col := db.Collection(collName)
 
@@ -27,7 +33,12 @@ func Aggregate(ctx context.Context, collName string, result interface{}, pipelin
 // resulting documents.
 //
 // For more information about the command, see https://www.mongodb.com/docs/manual/reference/command/aggregate/.
-func AggregateT[T Modeler](ctx context.Context, result interface{}, pipeline []interface{}, opts ...*options.AggregateOptions) error {
+func AggregateT[T Modeler](
+	ctx context.Context,
+	result interface{},
+	pipeline []interface{},
+	opts ...*options.AggregateOptions,
+) error {
 	var t T
 
 	return Aggregate(ctx, t.CollName(), result, pipeline, opts...)

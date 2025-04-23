@@ -3,6 +3,7 @@ package userapi
 import (
 	"awesome-util/graphql/go-graphql/modules/user/userservice"
 	"fmt"
+
 	"github.com/labstack/echo/v4"
 )
 

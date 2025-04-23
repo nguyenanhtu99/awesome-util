@@ -26,7 +26,7 @@ func New(
 func (s *Service) Create(ctx context.Context, name string) (*usermodel.User, error) {
 	user := usermodel.User{Name: name}
 	if err := s.repo.Create(ctx, &user); err != nil {
-		return nil, fmt.Errorf("failed to create user, err: %v", err)
+		return nil, fmt.Errorf("failed to create user, err: %w", err)
 	}
 
 	return &user, nil
@@ -36,7 +36,7 @@ func (s *Service) Get(ctx context.Context, id string) (*usermodel.User, error) {
 	fmt.Println("Getting user")
 	user, err := s.repo.Get(ctx, id)
 	if err != nil {
-		return nil, fmt.Errorf("failed to get user, err: %v", err)
+		return nil, fmt.Errorf("failed to get user, err: %w", err)
 	}
 
 	return user, nil

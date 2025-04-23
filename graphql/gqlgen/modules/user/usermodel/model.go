@@ -5,6 +5,6 @@ import (
 )
 
 type User struct {
-	mongox.IDField `bson:",inline"`
-	Name           string `json:"name" bson:"name"`
+	mongox.IDField `       bson:",inline"`
+	Name           string `bson:"name"    json:"name"`
 }
