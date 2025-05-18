@@ -1,0 +1,46 @@
+// proto/hello.proto
+syntax = "proto3";
+
+package hello;
+
+import "google/protobuf/any.proto";
+
+option go_package = "/proto/encode;encode";
+
+message EncodeInt32 {
+    int32 num = 1;
+}
+
+message EncodeFixed32 {
+    fixed32 num = 1;
+}
+
+message EncodeSint32 {
+    sint32 num = 1;
+}
+
+message Repeated {
+    repeated int32 num = 1;
+    repeated string name = 2;
+}
+
+message Map {
+    map<int32, string> map = 1;
+}
+
+message Oneof {
+    oneof oneof {
+        int32 num = 1;
+        string name = 2;
+    }
+}
+
+message Reserve {
+    int32 num = 1;
+    reserved 2;
+    string name = 3;
+}
+
+message Any {
+    google.protobuf.Any any = 1;
+}
